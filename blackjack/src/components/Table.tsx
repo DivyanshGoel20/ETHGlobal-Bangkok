@@ -6,7 +6,7 @@ import WinComponent from "./WinComponent";
 export default function Table() {
     return (
         <div className="relative h-screen bg-[url('./bg.svg')] bg-no-repeat bg-cover">
-            {/* <WinComponent /> */}
+            <WinComponent amount="150" />
             <div className="max-w-2xl mx-auto h-full">
                 <div className="flex flex-col gap-40">
                     {/* Players Section */}

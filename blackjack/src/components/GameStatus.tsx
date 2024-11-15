@@ -11,7 +11,7 @@ export const GameStatus = () => {
             </h2>
             <div className="mx-auto bg-[#1F2235] rounded-[8px] p-4 flex items-center justify-center text-center w-[80%] h-[100px]">
                 <div>
-                    <Loading loading />
+                    {/* <Loading loading /> */}
                 </div>
                 {/* <div className="flex justify-between items-center">
                 <span className="text-amber-400">Amount Staked</span>
