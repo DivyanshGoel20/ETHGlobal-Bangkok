@@ -6,7 +6,7 @@ import {DevOpsTools} from "foundry-devops/src/DevOpsTools.sol";
 
 contract HelperConfig is Script {
     function getBlackJack(uint256 _chainId) public view returns (address) {
-        address blackJack = DevOpsTools.get_most_recent_deployment("BlackJack", block.chainid);
+        address blackJack = DevOpsTools.get_most_recent_deployment("BlackJack", _chainId);
         return blackJack;
     }
 
