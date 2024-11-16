@@ -27,7 +27,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
             setFullPageLoading(true); // Show full-page loader
             setTimeout(() => {
                 setStep("3"); // Navigate to the next step
-            }, 3000); // Optional delay to show the full-page loader
+            }, 4000); // Optional delay to show the full-page loader
         } catch (error) {
             console.error(error);
             alert("An error occurred: " + error.message); // Show error alert

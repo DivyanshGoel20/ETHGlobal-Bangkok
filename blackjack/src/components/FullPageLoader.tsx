@@ -25,7 +25,7 @@ const FullPageLoader = ({ loading = true }: { loading: boolean | undefined }) =>
       {cd === 3 && <img src="./3.svg" alt="3" className="smalltobig opacity-1" />}
       {cd === 2 && <img src="./2.svg" alt="2" className="smalltobig opacity-1" />}
       {cd === 1 && <img src="./1.svg" alt="1" className="smalltobig opacity-1" />}
-      {cd === 0 && <img src="./3.svg" alt="0" className="smalltobig opacity-1" />}
+      {cd === 0 && <img src="./0.svg" alt="0" className="smalltobig opacity-1" />}
     </div>
   );
 };
