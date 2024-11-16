@@ -2,12 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import Table from "./components/Table";
 import Test from "./components/Test";
+// @ts-ignore
 import { DynamicWidget, useDynamicContext, useTelegramLogin } from "@dynamic-labs/sdk-react-core";
 import { useEffect, useState } from "react";
 
 function App() {
     const { sdkHasLoaded, user } = useDynamicContext();
     const { telegramSignIn } = useTelegramLogin();
+    // @ts-ignore
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -28,16 +30,6 @@ function App() {
 
     return (
         <>
-
-            {isLoading ? "Loadingg....." : <DynamicWidget innerButtonComponent={<div className="-mt-20">
-                <a
-                    className="bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
-                    onClick={() => console.log("Connect wallet clicked")}
-                >
-                    Connect Wallet
-                </a>
-            </div>} />}
-
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginPage />} />
