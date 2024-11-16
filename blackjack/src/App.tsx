@@ -28,16 +28,6 @@ function App() {
 
     return (
         <>
-
-            {isLoading ? "Loadingg....." : <DynamicWidget innerButtonComponent={<div className="-mt-20">
-                <a
-                    className="bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
-                    onClick={() => console.log("Connect wallet clicked")}
-                >
-                    Connect Wallet
-                </a>
-            </div>} />}
-
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginPage />} />
