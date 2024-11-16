@@ -41,6 +41,10 @@ ifeq ($(findstring --network flow,$(ARGS)),--network flow)
 	NETWORK_ARGS := --rpc-url $(FLOW_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --legacy
 endif
 
+ifeq ($(findstring --network sapphire,$(ARGS)),--network sapphire)
+	NETWORK_ARGS := --rpc-url $(OASIS_SAPPHIRE_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --legacy --verify --verifier sourcify --verifier-url https://sourcify.dev/server
+endif
+
 ifeq ($(findstring --network morph,$(ARGS)),--network morph)
 	NETWORK_ARGS := --rpc-url $(MORPH_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --legacy
 endif
@@ -87,11 +91,8 @@ endif
 
 # Commands for Local
 
-deployDataValidatorHook: 
-	@forge script script/DeployDataValidatorHook.s.sol:DeployDataValidatorHook $(NETWORK_ARGS)
+deployRandomNumber: 
+	@forge script script/DeployRandomNumber.s.sol:DeployRandomNumber $(NETWORK_ARGS)
 
-deployDataAttester: 
-	@forge script script/DeployDataAttester.s.sol:DeployDataAttester $(NETWORK_ARGS)
-
-setSchemaId: 
-	@forge script script/interactions/i_DataAttester.s.sol:SetSchemaId $(NETWORK_ARGS)
+getRandomNumber: 
+	@forge script script/interactions/i_RandomNumber.s.sol:GetRandomNumber $(NETWORK_ARGS)
