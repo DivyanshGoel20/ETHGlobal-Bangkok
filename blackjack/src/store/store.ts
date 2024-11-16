@@ -51,6 +51,7 @@ const useBlackjackStore = create<BlackjackStore>((set) => ({
   potentialWin: 0,
   potentialLoss: 0,
   setStake: (stake: number) =>
+    // @ts-ignore
     set((state) => ({
       amountStaked: stake,
       potentialWin: stake * 0.5, // Example: Winning 50% of the stake

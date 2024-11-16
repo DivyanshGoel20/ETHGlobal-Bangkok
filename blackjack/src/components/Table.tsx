@@ -4,32 +4,44 @@ import { DealersTable } from "./DealersTable";
 import { GameStatus } from "./GameStatus";
 import { PlayersTable } from "./PlayersTable";
 import WinComponent from "./WinComponent";
-
-interface PlayerProps {
+import { Rules } from "./Rules";
+import Stake from "./Stake";
+type Card = {
+    value: string;
+    suit?: "♣" | "♠" | "♥" | "♦";
+    faceDown?: boolean;
+  };
+ // @ts-ignore 
+  interface PlayerProps {
     name: string;
-    cards: Array<{
-        value: string;
-        suit?: "♣" | "♠" | "♥" | "♦";
-        faceDown?: boolean;
-    }>;
-}
+    cards: Array<Card>; // Correctly reference the Card type
+  }
 
 export default function Table() {
+    const [step, setStep] = useState<string>("1");
+    // @ts-ignore
+    const [win, setWin] = useState<boolean>(false);
+
     // CARD STORES 
     const { cards: dealerCards, newCard: newDealerCard } = useDealerCardStore();
+    // @ts-ignore
     const addDealerCard = () => {
-      const card = { value: "K", suit: "♦", faceDown: true };
+      const card:Card = { value: "K", suit: "♦", faceDown: true };
       newDealerCard(card);
     };
     const { cards: playerCards, newCard: newPlayerCard } = usePlayerCardStore();
+    // @ts-ignore
     const addPlayerCard = () => {
-      const card = { value: "A", suit: "♠", faceDown: false };
+      const card:Card = { value: "A", suit: "♠", faceDown: false };
       newPlayerCard(card);
     };
 
     // SC CALLS
+    // @ts-ignore
     const [newCardLoader, setNewCardLoader] = useState(false)
+    // @ts-ignore
     const [standLoader, setStandLoader] = useState(false)
+
     const hitHandler = () => {
        setNewCardLoader(true);
        try{
@@ -51,9 +63,15 @@ export default function Table() {
 
     return (
         <div className="relative h-screen bg-[url('./bg.svg')] bg-no-repeat bg-cover">
-            {/* <WinComponent amount="150" /> */}
+            {win && <WinComponent amount="150" />}
+            {step === "1" ? (
+                <Rules setStep={setStep} />
+            ) : step === "2" ? (
+                <Stake setStep={setStep} />
+            ) : (
+                <>
             <div className="max-w-2xl mx-auto h-full">
-                <div className="flex flex-col gap-[60px] items-center">
+                <div className="flex flex-col gap-40">
                     {/* Players Section */}
                     <div className="mt-6">
                         <DealersTable
@@ -76,7 +94,7 @@ export default function Table() {
                 </div>
 
                 {/* Controls Section */}
-                <div className="space-y-5 mt-[51px]">
+                <div className="space-y-5 mt-16">
                     <div className="text-center">
                         <p className="text-[#F8DDA4] mb-4 raleway">
                             Would you like to?
@@ -85,14 +103,12 @@ export default function Table() {
                             <button
                                 className="w-32 bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[8px] py-[6px]"
                                 onClick={hitHandler}
-                                disabled={standLoader || newCardLoader}
                             >
                                 HIT
                             </button>
                             <button
                                 className="w-32 bg-gradient-to-b helvetica shadow-[1px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[8px] py-[6px]"
                                 onClick={standHandler}
-                                disabled={standLoader || newCardLoader}
                             >
                                 STAND
                             </button>
@@ -100,7 +116,7 @@ export default function Table() {
                     </div>
                 </div>
                 <GameStatus />
-            </div>
+            </div></>)}
         </div>
     );
 }
