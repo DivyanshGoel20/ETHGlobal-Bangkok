@@ -14,7 +14,7 @@ interface PlayerCardStore {
 }
 
 const usePlayerCardStore = create<PlayerCardStore>((set) => ({
-  cards: [{ value: "3", faceDown: true, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "", faceDown: true }],
+  cards: [{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "", faceDown: true }],
   newCard: (card: Card) =>
     set((state) => ({
       cards: [...state.cards, card], 
@@ -27,7 +27,7 @@ interface DealerCardStore {
 }
 
 const useDealerCardStore = create<DealerCardStore>((set) => ({
-  cards: [{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "", faceDown: true }], // Initial state
+  cards: [{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "3", faceDown: false, suit:"♥" },{ value: "", faceDown: true }], // Initial state
   newCard: (card: Card) =>
     set((state) => ({
       cards: [...state.cards, card], // Safely add the new card

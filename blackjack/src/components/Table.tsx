@@ -71,7 +71,7 @@ export default function Table() {
             ) : (
                 <>
             <div className="max-w-2xl mx-auto h-full">
-                <div className="flex flex-col gap-40">
+                <div className="flex flex-col items-center gap-[45px]">
                     {/* Players Section */}
                     <div className="mt-6">
                         <DealersTable
@@ -94,7 +94,7 @@ export default function Table() {
                 </div>
 
                 {/* Controls Section */}
-                <div className="space-y-5 mt-16">
+                <div className="space-y-5 mt-[36px]">
                     <div className="text-center">
                         <p className="text-[#F8DDA4] mb-4 raleway">
                             Would you like to?

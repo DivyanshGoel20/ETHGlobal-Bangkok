@@ -4,7 +4,7 @@ import Loading from "./Loading";
 
 export const GameStatus = () => {
     // @ts-ignore
-    const [amountLoader, setAmountLoader] = useState(true)
+    const [amountLoader, setAmountLoader] = useState(false)
         const {
                 // @ts-ignore
           walletAmount,
