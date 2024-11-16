@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import Confetti from "react-confetti-boom";
 
 const WinComponent = ({ amount = "150" }: { amount: string }) => {
+    useEffect(()=>{
+        const audio = new Audio('/winning.mp3');
+        audio.play();
+    },[])
     const itemVariants = {
         hidden: { scale: 0.8, opacity: 0 },
         visible: {
