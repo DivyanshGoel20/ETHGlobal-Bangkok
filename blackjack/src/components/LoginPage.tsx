@@ -1,30 +1,24 @@
 export default function LoginPage() {
     return (
-        <div className="max-h-screen h-screen bg-gradient-to-b from-gray-900 to-black text-center px-4 py-12 flex flex-col items-center justify-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-200 to-yellow-400 bg-clip-text text-transparent">
-                Play BlackJack !
-            </h1>
-            <p className="text-amber-100/80 max-w-md mb-12">
-                Lorem ipsum dolor sit amet consectetur. Faucibus ullamcorper
-                facilisis Lorem ipsum dolor sit amet consectetur.
-            </p>
-
-            <div className="relative w-64 h-64 md:w-80 md:h-80 mb-12">
-                <img
-                    src="/placeholder.svg?height=320&width=320"
-                    alt="BlackJack Blitz Logo"
-                    width={320}
-                    height={320}
-                    className="animate-pulse-slow"
-                />
+        <div className="overflow-hidden max-h-screen h-screen bg-[url('./bg-home.svg')] text-center flex flex-col items-center gap-96">
+            <div className="w-[90%] pb-20 mt-20">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#FBD07D] raleway">
+                    Play BlackJack !
+                </h1>
+                <p className="text-[#FBD07D] text-[10px] max-w-md raleway">
+                    Lorem ipsum dolor sit amet consectetur. Faucibus ullamcorper
+                    facilisis Lorem ipsum dolor sit amet consectetur.
+                </p>
             </div>
-
-            <button
-                className="px-8 py-6 text-lg font-semibold rounded-full bg-gradient-to-r from-amber-300 to-yellow-400 hover:from-amber-400 hover:to-yellow-500 text-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-amber-500/25"
-                onClick={() => console.log("Connect wallet clicked")}
-            >
-                Connect Wallet
-            </button>
+            <div className="-mt-20">
+                <a
+                    href="/user"
+                    className="bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
+                    onClick={() => console.log("Connect wallet clicked")}
+                >
+                    Connect Wallet
+                </a>
+            </div>
         </div>
     );
 }
