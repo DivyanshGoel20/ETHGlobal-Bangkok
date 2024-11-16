@@ -33,7 +33,7 @@ contract BlackJack is Utils {
     uint256[] nosGenerated;
 
     // Will be called by Dealer
-    function startGame(address _userA) public payable {
+    function startGame(address _userA) public {
         status = true;
         userA = _userA;
 

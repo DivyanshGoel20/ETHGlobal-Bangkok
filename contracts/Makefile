@@ -91,8 +91,8 @@ endif
 
 # Commands for Local
 
-deployRandomNumber: 
-	@forge script script/DeployRandomNumber.s.sol:DeployRandomNumber $(NETWORK_ARGS)
+deployBlackJack: 
+	@forge script script/DeployBlackJack.s.sol:DeployBlackJack $(NETWORK_ARGS)
 
 getRandomNumber: 
 	@forge script script/interactions/i_RandomNumber.s.sol:GetRandomNumber $(NETWORK_ARGS)
