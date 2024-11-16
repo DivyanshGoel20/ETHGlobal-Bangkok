@@ -12,15 +12,16 @@ interface PlayerProps {
 
 export const PlayersTable = ({ name, cards }: PlayerProps) => {
     return (
-        <div className="flex flex-col items-center gap-2">
-            <div className="flex items-end gap-3">
+        <div className="flex flex-col items-center gap-2 max-w-[84%]">
+            <div className="flex flex-row items-centre gap-3">
                 <PlayerAvatar name={name} />
-                <div className="flex flex-col gap-5 justify-end">
+                <div className="flex flex-row flex-wrap gap-2 items-start justify-start h-fit place-self-center">
                     {cards.map((card, index) => (
                         <PlayingCard key={index} {...card} />
                     ))}
-                    <img src="./chips.svg" alt="chips" className="w-8 h-8" />
+                    
                 </div>
+                <img src="./chips.svg" alt="chips" className="w-8 h-8" />
             </div>
         </div>
     );
