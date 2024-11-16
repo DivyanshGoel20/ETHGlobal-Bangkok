@@ -4,6 +4,11 @@ const FullPageLoader = ({ loading = true }: { loading: boolean | undefined }) =>
   const [cd, setCd] = useState(3); // Start countdown at 3
 
   useEffect(() => {
+    const audio = new Audio('/countdown.mp3');
+    audio.play();
+  }, []);
+
+  useEffect(() => {
     if (loading) {
       const interval = setInterval(() => {
         setCd((prev) => {
