@@ -7,7 +7,7 @@ const Loading = ({ loading = true }: { loading: boolean | undefined }) => {
                 color="#F8DDA4"
                 loading={loading}
                 size={10}
-                speedMultiplier={1}
+                speedMultiplier={0.5}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />

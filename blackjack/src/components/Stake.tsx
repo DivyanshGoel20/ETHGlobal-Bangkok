@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+// @ts-ignore
 import { AnimatePresence, motion } from "motion/react";
 
 const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
