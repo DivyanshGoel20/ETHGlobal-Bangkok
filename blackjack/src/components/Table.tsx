@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDealerCardStore, usePlayerCardStore } from "../store/store";
 import { DealersTable } from "./DealersTable";
 import { GameStatus } from "./GameStatus";
@@ -18,6 +18,11 @@ interface PlayerProps {
 }
 
 export default function Table() {
+    useEffect(() => {
+    //   START GANE
+    }, [])
+    
+
     const [step, setStep] = useState<string>("1");
     // @ts-ignore
     const [win, setWin] = useState<boolean>(false);
