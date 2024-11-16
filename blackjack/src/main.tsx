@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { DynamicContextProvider, mergeNetworks } from '@dynamic-labs/sdk-react-core'
+import { DynamicContextProvider, DynamicUserProfile, mergeNetworks } from '@dynamic-labs/sdk-react-core'
 import { EthereumWalletConnectors } from '@dynamic-labs/ethereum'
 import { GlobalWalletExtension } from '@dynamic-labs/global-wallet'
 
@@ -39,6 +39,7 @@ createRoot(document.getElementById('root')!).render(
       }}
     >
       <App />
+      <DynamicUserProfile />
     </DynamicContextProvider>
   </StrictMode>,
 )
