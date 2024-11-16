@@ -20,7 +20,7 @@ interface PlayerProps {
 export default function Table() {
     const [step, setStep] = useState<string>("1");
     // @ts-ignore
-    const [win, setWin] = useState<boolean>(true);
+    const [win, setWin] = useState<boolean>(false);
 
     // CARD STORES
     const { cards: dealerCards, newCard: newDealerCard } = useDealerCardStore();
