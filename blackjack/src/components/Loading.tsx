@@ -4,7 +4,7 @@ const Loading = ({ loading = true }: { loading: boolean | undefined }) => {
     return (
         <div>
             <SyncLoader
-                color="#F8DDA4"
+                color="#ffffff"
                 loading={loading}
                 size={10}
                 speedMultiplier={0.5}
