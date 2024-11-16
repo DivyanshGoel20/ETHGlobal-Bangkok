@@ -7,6 +7,7 @@ contract BlackJack is Utils {
     event BlackJack__GameStarted();
     event BlackJack__GameEnded();
     event BlackJack__GameWon();
+    event BlackJack__GameLose();
     event BlackJack__FundsReceived(address user, uint256 amount);
     event BlackJack__DeckDistributed();
     event BlackJack__Hit(address user, uint256 handTotal);
@@ -64,18 +65,17 @@ contract BlackJack is Utils {
         emit BlackJack__DeckDistributed();
     }
 
-    function hit() public {
+    function hit() public returns (uint256[] memory) {
         if (status_userA) {
+            uint256 _randomNo;
+            uint256 currentLengthOfHand = hand_userA.length;
+
+            _randomNo = _doesExist(_getRandomNumber(), nosGenerated);
+            hand_userA[currentLengthOfHand] = (_randomNo);
             uint256 handTotal = _handTotal(hand_userA);
+            nosGenerated[totalRandomNumberGenerated] = _randomNo;
 
             if (handTotal < 21) {
-                uint256 _randomNo;
-                uint256 currentLengthOfHand = hand_userA.length;
-
-                _randomNo = _doesExist(_getRandomNumber(), nosGenerated);
-                hand_userA[currentLengthOfHand] = (_randomNo);
-                nosGenerated[totalRandomNumberGenerated] = _randomNo;
-
                 emit BlackJack__Hit(msg.sender, handTotal);
             } else if (_handTotal(hand_userA) == 21) {
                 uint256 winningAmt = (currentShare_userA * 150) / 100;
@@ -88,48 +88,57 @@ contract BlackJack is Utils {
                 emit BlackJack__GameEnded();
             } else {
                 status_userA = false;
-                emit BlackJack__GameEnded();
+                emit BlackJack__GameLose();
             }
+            totalRandomNumberGenerated++;
+            return hand_userA;
         } else {
             uint256 initialTotal = firstHand_dealer + secondHand_dealer;
-            uint256 handTotal_userA = _handTotal(hand_userA);
+            uint256[] memory initial_dealer = new uint256[](2);
+
+            initial_dealer[0] = firstHand_dealer;
+            initial_dealer[1] = secondHand_dealer;
+
             uint256 handTotal_dealer = _handTotal(remainingHands_dealer);
-            if (initialTotal > 16) {
-                if (initialTotal < handTotal_userA) {
-                    uint256 winningAmt_userA = (currentShare_userA * 2);
-                    (bool success,) = (msg.sender).call{value: winningAmt_userA}("");
-                    if (!success) {
-                        revert BlackJack__ErrorOccured();
-                    }
+            uint256 handTotal_userA = _handTotal(hand_userA);
 
-                    emit BlackJack__GameWon();
+            if (initialTotal > 21) {
+                uint256 winningAmt_userA = (currentShare_userA * 2);
+                (bool success,) = (msg.sender).call{value: winningAmt_userA}("");
+                if (!success) {
+                    revert BlackJack__ErrorOccured();
                 }
-
+                emit BlackJack__GameWon();
                 emit BlackJack__GameEnded();
-            } else if (initialTotal + handTotal_dealer > 16) {
-                if (initialTotal + handTotal_dealer < handTotal_userA) {
-                    uint256 winningAmt_userA = (currentShare_userA * 2);
-                    (bool success,) = (msg.sender).call{value: winningAmt_userA}("");
-                    if (!success) {
-                        revert BlackJack__ErrorOccured();
-                    }
-                    emit BlackJack__GameWon();
-                }
 
+                return initial_dealer;
+            } else if (initialTotal < 21 && initialTotal > handTotal_userA) {
+                emit BlackJack__GameLose();
                 emit BlackJack__GameEnded();
-            } else {
+                return initial_dealer;
+            }
+            while (initialTotal + handTotal_dealer < 21 && initialTotal + handTotal_dealer < handTotal_userA) {
                 uint256 _randomNo;
-                uint256 currentLengthOfHand = 2 + remainingHands_dealer.length;
+                uint256 currentLengthOfHand = remainingHands_dealer.length;
                 _randomNo = _doesExist(_getRandomNumber(), nosGenerated);
                 remainingHands_dealer[currentLengthOfHand] = (_randomNo);
                 nosGenerated[totalRandomNumberGenerated] = _randomNo;
 
-                emit BlackJack__Hit(msg.sender, initialTotal + handTotal_dealer);
+                totalRandomNumberGenerated++;
+                handTotal_dealer = _handTotal(remainingHands_dealer);
 
-                hit();
+                emit BlackJack__Hit(msg.sender, initialTotal + handTotal_dealer);
             }
+            if (initialTotal + handTotal_dealer > 21) {
+                emit BlackJack__GameWon();
+                emit BlackJack__GameEnded();
+            } else if (initialTotal + handTotal_dealer > handTotal_userA) {
+                emit BlackJack__GameLose();
+                emit BlackJack__GameEnded();
+            }
+
+            return remainingHands_dealer;
         }
-        totalRandomNumberGenerated++;
     }
 
     function stand() public {
