@@ -53,7 +53,8 @@ export default function LoginPage() {
                     facilisis Lorem ipsum dolor sit amet consectetur.
                 </p>
             </div>
-            <div className="flex flex-col gap-6 -mt-20">
+            <img src="./home-img.svg" alt="21" />
+            <div className="flex flex-col gap-6 mt-20">
                 {isLoading ? <Loading loading={true}/> : <DynamicWidget innerButtonComponent={
                     <div className="-mt-20">
                         <a
@@ -68,7 +69,7 @@ export default function LoginPage() {
                             className="mt-9 bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
                             onClick={startHandler}
                         >
-                            Start!
+                            {loading? <Loading loading={true}/>: "Start!"}
                         </a>}
             </div>
         </div>
