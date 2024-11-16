@@ -1,0 +1,111 @@
+{
+    "abi": [
+        {
+            "type": "constructor",
+            "inputs": [
+                {
+                    "name": "keypair",
+                    "type": "tuple",
+                    "internalType": "struct EthereumKeypair",
+                    "components": [
+                        {
+                            "name": "addr",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "secret",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "nonce",
+                            "type": "uint64",
+                            "internalType": "uint64"
+                        }
+                    ]
+                },
+                {
+                    "name": "_blackJack",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "stateMutability": "payable"
+        },
+        {
+            "type": "function",
+            "name": "blackJack",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "internalType": "contract BlackJack"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "proxyHit",
+            "inputs": [
+                {
+                    "name": "nonce",
+                    "type": "uint64",
+                    "internalType": "uint64"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "proxyStand",
+            "inputs": [
+                {
+                    "name": "nonce",
+                    "type": "uint64",
+                    "internalType": "uint64"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "setBlackJack",
+            "inputs": [
+                {
+                    "name": "_blackJack",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "error",
+            "name": "DER_Split_Error",
+            "inputs": []
+        },
+        {
+            "type": "error",
+            "name": "recoverV_Error",
+            "inputs": []
+        }
+    ]
+}
