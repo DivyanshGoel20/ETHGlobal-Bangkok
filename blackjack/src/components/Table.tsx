@@ -30,14 +30,10 @@ export default function Table() {
                             </div>
 
                             {/* Players Section */}
-                            <div className="grid grid-cols-2 mx-5">
+                            <div className="flex justify-center items-center w-full mx-5">
                                 <PlayersTable
                                     name="BOB (you)"
                                     cards={[{ value: "8", suit: "♣" }]}
-                                />
-                                <PlayersTable
-                                    name="Alice"
-                                    cards={[{ value: "8", suit: "♠" }]}
                                 />
                             </div>
                         </div>
