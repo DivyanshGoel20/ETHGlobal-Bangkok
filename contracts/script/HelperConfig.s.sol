@@ -5,9 +5,10 @@ import {Script} from "forge-std/Script.sol";
 import {DevOpsTools} from "foundry-devops/src/DevOpsTools.sol";
 
 contract HelperConfig is Script {
-    function getRandomNumberContract(uint256 chainId_) public view returns (address) {
-        address randomNumberContract = DevOpsTools.get_most_recent_deployment("RandomNumber", chainId_);
-
-        return randomNumberContract;
+    function getBlackJack(uint256 _chainId) public view returns (address) {
+        address blackJack = DevOpsTools.get_most_recent_deployment("BlackJack", block.chainid);
+        return blackJack;
     }
+
+    function getKeyPair(string memory userId) public view {}
 }
