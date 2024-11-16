@@ -79,6 +79,24 @@
   }
   
 
+  /* LOADER */
+  .smalltobig{
+    animation: stb 1s linear;
+  }
+  @keyframes stb {
+    0% {
+        scale: 0;
+        opacity: 100;
+    }
+    99%{
+        scale: 1;
+        opacity: 100;
+    }
+    100%{
+        opacity: 0;
+    }
+  }
+
   /* dymanic */
 
   .dynamic-shadow-dom {

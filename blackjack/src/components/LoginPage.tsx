@@ -1,5 +1,4 @@
 import { DynamicWidget, useDynamicContext, useTelegramLogin } from "@dynamic-labs/sdk-react-core";
-import { h1 } from "motion/react-client";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
@@ -26,11 +25,27 @@ export default function LoginPage() {
 
         signIn();
     }, [sdkHasLoaded]);
+
+    const startHandler = async () => {
+        setLoading(true);
+        try {
+            // Simulate an async operation (replace with your actual logic)
+            await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
+            setTimeout(() => {
+                navigate("/user"); // Navigate to /user page
+            }, 3000); // Optional delay to show full-page loader
+        } catch (error: any) {
+            console.error(error);
+            alert("An error occurred: " + error.message); // Show error alert
+            setLoading(false); // Stop button loader on error
+        }
+    };
+
     return (
-        <div className="overflow-hidden max-h-screen h-screen bg-[url('./bg-home.svg')] bg-no-repeat bg-cover text-center flex flex-col items-center gap-96">
-            <div className="w-[90%] pb-20 mt-36">
+        <div className="overflow-hidden max-h-screen h-screen bg-[url('./bg-home.svg')] text-center flex flex-col items-center gap-96">
+            <div className="w-[90%] pb-20 mt-20">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#FBD07D] raleway">
-                    Play BlackJack !
+                    Play BlackJack!
                 </h1>
                 <p className="text-[#FBD07D] text-[10px] max-w-md raleway">
                     Lorem ipsum dolor sit amet consectetur. Faucibus ullamcorper
@@ -50,7 +65,7 @@ export default function LoginPage() {
                     {primaryWallet &&  
                         <a
                             className="mt-9 bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
-                            onClick={() => { navigate("/user");}}
+                            onClick={startHandler}
                         >
                             Start!
                         </a>}
