@@ -103,7 +103,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                 </div>
                 <button
                     onClick={() => setStep("3")}
-                    className="w-[40%] py-2.5 rounded-lg bg-transparent border border-[#F5D799] text-[#FFF3CB] text-[16px] font-medium"
+                    className="w-[40%] py-2.5 rounded-lg bg-transparent border border-[#F5D799] text-[#FFF3CB] text-[16px] font-medium hover:bg-[#FCE9B9]/20"
                 >
                     Play !
                 </button>
