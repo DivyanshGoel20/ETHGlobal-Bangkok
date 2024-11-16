@@ -2,12 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import Table from "./components/Table";
 import Test from "./components/Test";
+// @ts-ignore
 import { DynamicWidget, useDynamicContext, useTelegramLogin } from "@dynamic-labs/sdk-react-core";
 import { useEffect, useState } from "react";
 
 function App() {
     const { sdkHasLoaded, user } = useDynamicContext();
     const { telegramSignIn } = useTelegramLogin();
+    // @ts-ignore
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {

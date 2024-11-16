@@ -7,6 +7,7 @@ export default function LoginPage() {
     const { sdkHasLoaded, user, primaryWallet } = useDynamicContext();
     const { telegramSignIn } = useTelegramLogin();
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    // @ts-ignore
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
