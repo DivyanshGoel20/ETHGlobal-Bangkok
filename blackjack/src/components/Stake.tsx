@@ -28,7 +28,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
             setTimeout(() => {
                 setStep("3"); // Navigate to the next step
             }, 4000); // Optional delay to show the full-page loader
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
             alert("An error occurred: " + error.message); // Show error alert
             setLoading(false); // Stop button loader on error
@@ -71,7 +71,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                 // <div className="absolute inset-0 flex items-center justify-center bg-white">
                 //     <Loading loading={fullPageLoading} /> {/* Replace with your full-page loader */}
                 // </div>
-                <FullPageLoader loading={fullPageLoading}/>
+                <FullPageLoader loading={fullPageLoading} />
             ) : (
                 <motion.div
                     initial="hidden"
@@ -125,7 +125,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                         className="w-[40%] py-2.5 rounded-lg bg-transparent border border-[#F5D799] text-[#FFF3CB] text-[16px] font-medium hover:bg-[#FCE9B9]/20"
                         disabled={loading} // Disable button while loading
                     >
-                        {loading ? <Loading loading={loading}/> : "Play !"}
+                        {loading ? <Loading loading={loading} /> : "Play !"}
                     </button>
                 </motion.div>
             )}
