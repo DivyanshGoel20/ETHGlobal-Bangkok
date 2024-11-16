@@ -43,8 +43,8 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="overflow-hidden max-h-screen h-screen bg-[url('./bg-home.svg')] text-center flex flex-col items-center gap-96">
-            <div className="w-[90%] pb-20 mt-20">
+        <div className="overflow-hidden max-h-screen h-screen text-center flex flex-col justify-center items-center bg-[radial-gradient(50%_30%_at_50%_55%,#F3D495_-300%,#181A27_90%)]">
+            <div className="w-[90%] pb-20">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#FBD07D] raleway">
                     Play BlackJack!
                 </h1>
