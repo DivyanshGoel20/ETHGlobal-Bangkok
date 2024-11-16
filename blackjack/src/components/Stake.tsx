@@ -122,7 +122,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                     </div>
                     <button
                         onClick={handleStake}
-                        className="w-[40%] py-2.5 rounded-lg bg-transparent border border-[#F5D799] text-[#FFF3CB] text-[16px] font-medium"
+                        className="w-[40%] py-2.5 rounded-lg bg-transparent border border-[#F5D799] text-[#FFF3CB] text-[16px] font-medium hover:bg-[#FCE9B9]/20"
                         disabled={loading} // Disable button while loading
                     >
                         {loading ? <Loading loading={loading}/> : "Play !"}

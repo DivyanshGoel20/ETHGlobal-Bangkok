@@ -71,7 +71,7 @@ export default function LoginPage() {
                     </div>
                     <div className="-mt-20">
                         <button
-                            className="bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
+                            className="bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10 hover:bg-gradient-to-t"
                             onClick={connectWalletHandler}
                             disabled={loading}
                         >

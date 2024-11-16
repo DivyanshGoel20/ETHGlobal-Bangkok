@@ -17,5 +17,8 @@
     "@ethsign/sign-protocol-evm": "^1.1.1",
     "@pythnetwork/entropy-sdk-solidity": "^1.5.0",
     "@pythnetwork/pyth-sdk-solidity": "^4.0.0"
+  },
+  "devDependencies": {
+    "@oasisprotocol/sapphire-contracts": "^0.2.11"
   }
 }

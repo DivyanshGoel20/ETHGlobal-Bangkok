@@ -93,7 +93,6 @@ export const Rules = ({
                                             </li>
                                         </ul>
                                     </div>
-
                                     <div className="space-y-2">
                                         <h2 className="font-semibold">
                                             3. Winning:
@@ -111,10 +110,9 @@ export const Rules = ({
                                         </ul>
                                     </div>
                                 </div>
-
                                 <div className="flex justify-end">
                                     <button
-                                        className="bg-transparent border border-[#FCE9B9] py-2 px-4 rounded-md text-[#FFF3CB]"
+                                        className="bg-transparent border border-[#FCE9B9] py-2 px-4 rounded-md text-[#FFF3CB] hover:bg-[#FCE9B9]/20"
                                         onClick={handleContinue}
                                     >
                                         Continue &gt;
