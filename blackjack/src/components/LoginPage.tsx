@@ -58,8 +58,8 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="overflow-hidden max-h-screen h-screen bg-[url('./bg-home.svg')] text-center flex flex-col items-center gap-96">
-            <div className="w-[90%] pb-20 mt-20">
+        <div className="overflow-hidden max-h-screen h-screen text-center flex flex-col justify-center items-center bg-[radial-gradient(50%_30%_at_50%_55%,#F3D495_-300%,#181A27_90%)]">
+            <div className="w-[90%] pb-20">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#FBD07D] raleway">
                     Play BlackJack!
                 </h1>
@@ -68,7 +68,8 @@ export default function LoginPage() {
                     facilisis Lorem ipsum dolor sit amet consectetur.
                 </p>
             </div>
-            <div className="-mt-20">
+            <img src="./home-img.svg" alt="21" />
+            <div className="mt-10">
                 <button
                     className="bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10 hover:bg-gradient-to-t"
                     onClick={connectWalletHandler}
