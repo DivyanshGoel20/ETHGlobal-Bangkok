@@ -71,7 +71,7 @@ export default function Table() {
                 <Stake setStep={setStep} />
             ) : (
                 <>
-                    <div className="max-w-2xl mx-auto h-full">
+                    <div className="max-w-2xl mx-auto h-full flex flex-col items-center">
                         <div className="flex flex-col items-center gap-[45px]">
                             {/* Players Section */}
                             <div className="mt-6">

@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core'
+import { DynamicContextProvider, mergeNetworks } from '@dynamic-labs/sdk-react-core'
 import { EthereumWalletConnectors } from '@dynamic-labs/ethereum'
 import { GlobalWalletExtension } from '@dynamic-labs/global-wallet'
 
@@ -13,9 +13,29 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <DynamicContextProvider
       settings={{
+        cssOverrides: <link rel='stylesheet' href='/index.css' />, // pass JSX element to be included in the shadow DOM
         environmentId: dynamicEnvId,
         walletConnectors: [EthereumWalletConnectors],
-        walletConnectorExtensions: [GlobalWalletExtension]
+        walletConnectorExtensions: [GlobalWalletExtension],
+        overrides: {
+          evmNetworks: (networks) => mergeNetworks([{
+            blockExplorerUrls: ['	https://explorer.oasis.io/testnet/sapphire'],
+            chainId: 23295,
+            chainName: 'Oasis Sapphire',
+            iconUrls: ['https://icons.llamao.fi/icons/chains/rsz_oasis.jpg'],
+            name: 'Oasis',
+            nativeCurrency: {
+              decimals: 18,
+              name: 'Rose',
+              symbol: 'ROSE',
+              iconUrl: 'https://icons.llamao.fi/icons/chains/rsz_oasis.jpg',
+            },
+            networkId: 23295,
+
+            rpcUrls: ['https://testnet.sapphire.oasis.io'],
+            vanityName: 'Oasis Sapphire',
+          },], networks)
+        }
       }}
     >
       <App />
