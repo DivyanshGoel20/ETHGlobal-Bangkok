@@ -13,7 +13,6 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <DynamicContextProvider
       settings={{
-        cssOverrides: <link rel='stylesheet' href='/index.css' />, // pass JSX element to be included in the shadow DOM
         environmentId: dynamicEnvId,
         walletConnectors: [EthereumWalletConnectors],
         walletConnectorExtensions: [GlobalWalletExtension],
