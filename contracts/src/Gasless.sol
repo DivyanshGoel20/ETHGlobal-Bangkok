@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {VennFirewallConsumer} from "@ironblocks/firewall-consumer/contracts/consumers/VennFirewallConsumer.sol";
+import {VennFirewallConsumer} from
+    "node_modules/@ironblocks/firewall-consumer/contracts/consumers/VennFirewallConsumer.sol";
 import {EIP155Signer} from "@oasisprotocol/sapphire-contracts/EIP155Signer.sol";
 
 import {BlackJack} from "./BlackJack.sol";

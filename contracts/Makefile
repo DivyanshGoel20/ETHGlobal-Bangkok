@@ -89,6 +89,10 @@ ifeq ($(findstring --network gnosis,$(ARGS)),--network gnosis)
 	NETWORK_ARGS := --rpc-url $(GNOSIS_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(GONSIS_SCAN_API_KEY) 
 endif
 
+ifeq ($(findstring --network zircuit,$(ARGS)),--network zircuit)
+	NETWORK_ARGS := --rpc-url $(ZIRCUIT_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast 
+endif
+
 # Commands for Local
 
 deployBlackJack: 
