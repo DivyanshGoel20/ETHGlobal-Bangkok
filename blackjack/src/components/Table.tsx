@@ -142,12 +142,34 @@ import { DealersTable } from "./DealersTable";
 import Stake from "./Stake";
 import { Rules } from "./Rules";
 import WinComponent from "./WinComponent";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 export default function Table() {
+    const Start = () => {
+        useEffect(() => {
+          const audio = new Audio('/cards-distributing.wav');
+        //   audio.loop = true;
+          audio.play();
+          setDealSound(true)
+        }, []);
+      
+        return null;
+      };
+      const DealSound = () => {
+        useEffect(() => {
+          const audio = new Audio('/cards-flip.wav');
+        //   audio.loop = true;
+          audio.play();
+        }, []);
+      
+        return null;
+      };
+    
   const [step, setStep] = useState<string>("1");
   const [win, setWin] = useState<boolean>(true);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameResult, setGameResult] = useState<string>("");
+  const [dealSound, setDealSound] = useState(false)
 //   @ts-ignore
   const [dealerToUser, setDealerToUser] = useState<boolean>(false)
 
@@ -181,6 +203,10 @@ export default function Table() {
   const hitHandler = () => {
     setNewCardLoader(true);
     setDealerToUser(true);
+    setDealSound(true)
+    const audio = new Audio('/card-flip.wav');
+        //   audio.loop = true;
+          audio.play();
     try {
       // @ts-ignore
       const playerValue = calculateHandValue(playerCards);
@@ -234,23 +260,35 @@ export default function Table() {
 
     handleGameEnd(winner);
   };
-
+  const { setShowDynamicUserProfile } = useDynamicContext();
   const handleGameEnd = (result: string) => {
     setGameOver(true);
     setGameResult(result);
 
     if (result === "player") {
       setWin(true);
+        
     } else if (result === "tie") {
       // Handle tie case - you might want to add a tie component or message
       setWin(false);
+      const audio = new Audio('/losing.wav');
+      //   audio.loop = true;
+        audio.play();
+        setShowDynamicUserProfile(true)
     } else {
       setWin(false);
+      const audio = new Audio('/losing.wav');
+      //   audio.loop = true;
+        audio.play();
+        setShowDynamicUserProfile(true)
     }
   };
 
   const standHandler = () => {
     setStandLoader(true);
+    const audio = new Audio('/cards-distributing.wav');
+    //   audio.loop = true;
+      audio.play();
     try {
       dealerPlay();
     } catch (error) {
@@ -282,6 +320,8 @@ export default function Table() {
         <Stake setStep={setStep} />
       ) : (
         <>
+        
+        {dealSound ? <DealSound/>:<Start/>}
           <div className="max-w-2xl mx-auto h-full flex flex-col items-center">
             <div className="flex flex-col items-center gap-[45px]">
               <div className="mt-6">
