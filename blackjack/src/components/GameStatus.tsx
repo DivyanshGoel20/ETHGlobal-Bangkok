@@ -36,7 +36,7 @@ export const GameStatus = () => {
         {amountLoader ? (
           <Loading loading />
         ) : (
-          <span className="text-white">{walletAmount} $USD</span>
+          <span className="text-white">{walletAmount} $CHIP</span>
         )}
       </div> */}
 
@@ -46,7 +46,7 @@ export const GameStatus = () => {
         {amountLoader ? (
           <Loading loading />
         ) : (
-          <span className="text-white">{amountStaked} $USD</span>
+          <span className="text-white">{amountStaked} $CHIP</span>
         )}
       </div>
 
@@ -56,7 +56,7 @@ export const GameStatus = () => {
         {amountLoader ? (
           <Loading loading />
         ) : (
-          <span className="text-white">+{potentialWin} $USD</span>
+          <span className="text-white">+{potentialWin} $CHIP</span>
         )}
       </div>
 
@@ -66,7 +66,7 @@ export const GameStatus = () => {
         {amountLoader ? (
           <Loading loading />
         ) : (
-          <span className="text-white">-{potentialLoss} $USD</span>
+          <span className="text-white">-{potentialLoss} $CHIP</span>
         )}
       </div>
 

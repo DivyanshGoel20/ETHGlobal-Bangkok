@@ -1,16 +1,35 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 // @ts-ignore
 import { AnimatePresence, motion } from "motion/react";
 import Loading from "./Loading";
 import FullPageLoader from "./FullPageLoader";
+import { useBlackjackStore } from "../store/store";
 
 const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
     const [stakeAmount, setStakeAmount] = useState<number>(0);
     const [loading, setLoading] = useState(false);
     const [fullPageLoading, setFullPageLoading] = useState(false);
+    const [chip, setChip] = useState(false)
+
+    const Chip = () => {
+        useEffect(() => {
+          const audio = new Audio('/poker-chips.wav');
+        //   audio.loop = true;
+          audio.play();
+        //   setChip(false)
+        }, []);
+      
+        return null;
+      };
+
+    // Access store methods and state
+    // @ts-ignore
+    const { walletAmount, setStake, resetStake } = useBlackjackStore();
 
     const handleIncrement = () => {
         setStakeAmount((prev) => prev + 50);
+        setChip(true);
+        // setChip(false)
     };
 
     const handleDecrement = () => {
@@ -18,8 +37,16 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
     };
 
     const handleStake = async () => {
+        if (stakeAmount > walletAmount) {
+            alert("You cannot stake more than your wallet amount!");
+            return;
+        }
+
         setLoading(true); // Show button loader
         try {
+            // Update the store with the new stake amount
+            setStake(stakeAmount);
+
             // Simulate an async operation (replace with your staking logic)
             await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
 
@@ -68,9 +95,6 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
     return (
         <div className="min-h-screen backdrop-blur-2xl bg-opacity-10 bg-[#000000] flex flex-col gap-6 items-center justify-center p-4 shadow-[4px_5px_5px_0px] shadow-[#F5D799]">
             {fullPageLoading ? (
-                // <div className="absolute inset-0 flex items-center justify-center bg-white">
-                //     <Loading loading={fullPageLoading} /> {/* Replace with your full-page loader */}
-                // </div>
                 <FullPageLoader loading={fullPageLoading} />
             ) : (
                 <motion.div
@@ -79,6 +103,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                     variants={containerVariants}
                     className="w-[80%] flex flex-col items-center gap-6"
                 >
+                    {chip && <Chip/>}
                     <div className="w-full rounded-xl p-px bg-gradient-to-b from-[#F5D799] to-[#666666]">
                         <div className="backdrop-blur-2xl bg-opacity-1 bg-[#181A27] p-1 rounded-xl">
                             <div className="p-4">
@@ -96,7 +121,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                                             className="size-16"
                                         />
                                         <p className="text-[#F8DDA4] text-[16px] font-bold raleway">
-                                            $ {stakeAmount}
+                                             {stakeAmount} $CHIPS
                                         </p>
                                     </div>
                                 </div>

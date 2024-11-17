@@ -14,6 +14,7 @@ interface PlayerProps {
 
 export const DealersTable = ({ name, cards }: PlayerProps) => {
     const [dealDealer, setDealDealer] = useState(false)
+
     return (
         <div className="flex flex-col items-center gap-2">
             <div className="flex items-center gap-4" onClick={()=> {
