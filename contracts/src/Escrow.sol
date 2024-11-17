@@ -2,6 +2,7 @@
 pragma solidity 0.8.24;
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {VennFirewallConsumer} from "@ironblocks/firewall-consumer/contracts/consumers/VennFirewallConsumer.sol";
 
 contract Escrow {
     event Escrow__FundsReceived(address user, uint256 amount);
@@ -29,8 +30,9 @@ contract Escrow {
         emit Escrow__FundsReceived(msg.sender, _amount);
     }
 
-    function distributeFunds(uint256 _amount) public {
-        ERC20(chipToken).transferFrom(address(this), msg.sender, _amount);
+    function distributeFunds(uint256 _amount) public firewallProtected {
+        ERC20(chipToken).approve(msg.sender, _amount);
+        ERC20(chipToken).transfer(msg.sender, _amount);
 
         balances[msg.sender] -= _amount;
 
