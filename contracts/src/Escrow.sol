@@ -4,7 +4,7 @@ pragma solidity 0.8.24;
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {VennFirewallConsumer} from "@ironblocks/firewall-consumer/contracts/consumers/VennFirewallConsumer.sol";
 
-contract Escrow {
+contract Escrow is VennFirewallConsumer {
     event Escrow__FundsReceived(address user, uint256 amount);
     event Escrow__FundsDistributed(address user, uint256 amount);
 

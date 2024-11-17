@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import {VennFirewallConsumer} from "@ironblocks/firewall-consumer/contracts/consumers/VennFirewallConsumer.sol";
 import {EIP155Signer} from "@oasisprotocol/sapphire-contracts/EIP155Signer.sol";
 
 import {BlackJack} from "./BlackJack.sol";
@@ -12,7 +13,7 @@ struct EthereumKeypair {
 }
 
 // Proxy for gasless transaction.
-contract Gasless {
+contract Gasless is VennFirewallConsumer {
     EthereumKeypair private kp;
 
     BlackJack public blackJack;
@@ -25,7 +26,7 @@ contract Gasless {
         blackJack = BlackJack(payable(_blackJack));
     }
 
-    function setBlackJack(address _blackJack) external {
+    function setBlackJack(address _blackJack) external firewallProtected {
         blackJack = BlackJack(payable(_blackJack));
     }
 
