@@ -2,11 +2,15 @@ import { DynamicWidget, useDynamicContext, useTelegramLogin } from "@dynamic-lab
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import { gasslessDeployOasis } from "../utils/transactions";
+import { flowInteract } from "../utils/transactions2";
+import { executeStartGame } from "../utils/transactions"
 
 export default function LoginPage() {
     const { sdkHasLoaded, user, primaryWallet } = useDynamicContext();
     const { telegramSignIn } = useTelegramLogin();
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
     // @ts-ignore
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -27,6 +31,20 @@ export default function LoginPage() {
         signIn();
     }, [sdkHasLoaded]);
 
+    // const startHandler = async () => {
+    //     setLoading(true);
+    //     try {
+
+    //         const flowDeploy = await executeStartGame(primaryWallet)
+    //         console.log(flowDeploy)
+
+    //     } catch (error: any) {
+    //         console.error(error);
+    //         alert("An error occurred: " + error.message); // Show error alert
+    //         setLoading(false); // Stop button loader on error
+    //     }
+    // };
+
     const startHandler = async () => {
         setLoading(true);
         try {
@@ -34,7 +52,7 @@ export default function LoginPage() {
             await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
             setTimeout(() => {
                 navigate("/user"); // Navigate to /user page
-            }, 3000); // Optional delay to show full-page loader
+            }, 100); // Optional delay to show full-page loader
         } catch (error: any) {
             console.error(error);
             alert("An error occurred: " + error.message); // Show error alert
@@ -53,25 +71,27 @@ export default function LoginPage() {
                     facilisis Lorem ipsum dolor sit amet consectetur.
                 </p>
             </div>
+            <div id='reveal-example-container-id' className="h-10 w-10"></div>
             <img src="./home-img.svg" alt="21" />
             <div className="flex flex-col gap-6 mt-20">
-                {isLoading ? <Loading loading={true}/> : <DynamicWidget innerButtonComponent={
+                {isLoading ? <Loading loading={true} /> : <DynamicWidget innerButtonComponent={
                     <div className="-mt-20">
                         <a
                             className="bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
-                            
+
                         >
                             Connect Wallet
                         </a>
                     </div>} />}
-                    {primaryWallet &&  
-                        <a
-                            className="mt-9 bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
-                            onClick={startHandler}
-                        >
-                            {loading? <Loading loading={true}/>: "Start!"}
-                        </a>}
+                {primaryWallet &&
+                    <a
+                        className="mt-9 bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[10px] py-[10px] px-10"
+                        onClick={startHandler}
+                    >
+                        {loading ? <Loading loading={true} /> : "Start!"}
+                    </a>}
             </div>
+
         </div>
     );
 }

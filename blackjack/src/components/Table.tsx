@@ -143,34 +143,36 @@ import Stake from "./Stake";
 import { Rules } from "./Rules";
 import WinComponent from "./WinComponent";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import { claimMoney } from "../utils/transactions2";
 
 export default function Table() {
-    const Start = () => {
-        useEffect(() => {
-          const audio = new Audio('/cards-distributing.wav');
-        //   audio.loop = true;
-          audio.play();
-          setDealSound(true)
-        }, []);
-      
-        return null;
-      };
-      const DealSound = () => {
-        useEffect(() => {
-          const audio = new Audio('/cards-flip.wav');
-        //   audio.loop = true;
-          audio.play();
-        }, []);
-      
-        return null;
-      };
-    
+  const Start = () => {
+    useEffect(() => {
+      const audio = new Audio('/cards-distributing.wav');
+      //   audio.loop = true;
+      audio.play();
+      setDealSound(true)
+    }, []);
+
+    return null;
+  };
+  const DealSound = () => {
+    useEffect(() => {
+      const audio = new Audio('/cards-flip.wav');
+      //   audio.loop = true;
+      audio.play();
+    }, []);
+
+    return null;
+  };
+
   const [step, setStep] = useState<string>("1");
   const [win, setWin] = useState<boolean>(true);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameResult, setGameResult] = useState<string>("");
   const [dealSound, setDealSound] = useState(false)
-//   @ts-ignore
+  const { primaryWallet } = useDynamicContext()
+  //   @ts-ignore
   const [dealerToUser, setDealerToUser] = useState<boolean>(false)
 
   const {
@@ -181,9 +183,9 @@ export default function Table() {
   const { cards: playerCards, newCard: newPlayerCard } = usePlayerCardStore();
   const { potentialWin } = useBlackjackStore();
 
-//   @ts-ignore
+  //   @ts-ignore
   const [newCardLoader, setNewCardLoader] = useState(false);
-//   @ts-ignore
+  //   @ts-ignore
   const [standLoader, setStandLoader] = useState(false);
 
   useEffect(() => {
@@ -205,8 +207,8 @@ export default function Table() {
     setDealerToUser(true);
     setDealSound(true)
     const audio = new Audio('/card-flip.wav');
-        //   audio.loop = true;
-          audio.play();
+    //   audio.loop = true;
+    audio.play();
     try {
       // @ts-ignore
       const playerValue = calculateHandValue(playerCards);
@@ -248,7 +250,7 @@ export default function Table() {
       newDealerCard({ ...newCard, faceDown: false });
 
       // Add a small delay for animation
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
     // Determine winner
@@ -261,26 +263,28 @@ export default function Table() {
     handleGameEnd(winner);
   };
   const { setShowDynamicUserProfile } = useDynamicContext();
-  const handleGameEnd = (result: string) => {
+  const handleGameEnd = async (result: string) => {
     setGameOver(true);
     setGameResult(result);
 
     if (result === "player") {
+      const txnHash = await claimMoney(primaryWallet, potentialWin)
+      console.log("txnHash in Table:", txnHash)
       setWin(true);
-        
+
     } else if (result === "tie") {
       // Handle tie case - you might want to add a tie component or message
       setWin(false);
       const audio = new Audio('/losing.wav');
       //   audio.loop = true;
-        audio.play();
-        setShowDynamicUserProfile(true)
+      audio.play();
+      setShowDynamicUserProfile(true)
     } else {
       setWin(false);
       const audio = new Audio('/losing.wav');
       //   audio.loop = true;
-        audio.play();
-        setShowDynamicUserProfile(true)
+      audio.play();
+      setShowDynamicUserProfile(true)
     }
   };
 
@@ -288,7 +292,7 @@ export default function Table() {
     setStandLoader(true);
     const audio = new Audio('/cards-distributing.wav');
     //   audio.loop = true;
-      audio.play();
+    audio.play();
     try {
       dealerPlay();
     } catch (error) {
@@ -320,8 +324,8 @@ export default function Table() {
         <Stake setStep={setStep} />
       ) : (
         <>
-        
-        {dealSound ? <DealSound/>:<Start/>}
+
+          {dealSound ? <DealSound /> : <Start />}
           <div className="max-w-2xl mx-auto h-full flex flex-col items-center">
             <div className="flex flex-col items-center gap-[45px]">
               <div className="mt-6">
@@ -331,7 +335,7 @@ export default function Table() {
                     {/* @ts-ignore */}
                     Dealer's value:{" "}
                     {calculateHandValue(
-                        // @ts-ignore
+                      // @ts-ignore
                       dealerCards.filter((card) => !card.faceDown)
                     )}
                   </div>
@@ -355,11 +359,11 @@ export default function Table() {
                   <button
                     // @ts-ignore
                     className={`w-32 bg-gradient-to-b helvetica shadow-[0px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[8px] py-[6px] ${
-                    //   @ts-ignore
-                        gameOver || calculateHandValue(playerCards) >= 21
+                      //   @ts-ignore
+                      gameOver || calculateHandValue(playerCards) >= 21
                         ? "opacity-50 cursor-not-allowed"
                         : ""
-                    }`}
+                      }`}
                     onClick={hitHandler}
                     // @ts-ignore
                     disabled={gameOver || calculateHandValue(playerCards) >= 21}
@@ -367,9 +371,8 @@ export default function Table() {
                     HIT
                   </button>
                   <button
-                    className={`w-32 bg-gradient-to-b helvetica shadow-[1px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[8px] py-[6px] ${
-                      gameOver ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
+                    className={`w-32 bg-gradient-to-b helvetica shadow-[1px_2px_2px_0px] shadow-[#A2AFA889] from-[#E7BD70] to-[#F3D495] text-base font-medium rounded-[8px] py-[6px] ${gameOver ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
                     onClick={standHandler}
                     disabled={gameOver}
                   >

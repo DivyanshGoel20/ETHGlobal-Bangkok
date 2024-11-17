@@ -3,7 +3,7 @@ import LoginPage from "./components/LoginPage";
 import Table from "./components/Table";
 import Test from "./components/Test";
 // @ts-ignore
-import { DynamicWidget, useDynamicContext, useTelegramLogin } from "@dynamic-labs/sdk-react-core";
+import { DynamicWidget, useDynamicContext, useEmbeddedReveal, useTelegramLogin } from "@dynamic-labs/sdk-react-core";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -14,7 +14,6 @@ function App() {
 
     useEffect(() => {
         if (!sdkHasLoaded) return;
-        console.log('sdk loaded')
 
         const signIn = async () => {
             if (!user) {

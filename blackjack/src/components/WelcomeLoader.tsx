@@ -50,7 +50,7 @@ export const WelcomeLoader = () => {
     React.useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 3000);
+        }, 100);
 
         return () => clearTimeout(timer);
     }, []);

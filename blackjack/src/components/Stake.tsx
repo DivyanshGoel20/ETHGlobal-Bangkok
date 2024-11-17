@@ -4,23 +4,26 @@ import { AnimatePresence, motion } from "motion/react";
 import Loading from "./Loading";
 import FullPageLoader from "./FullPageLoader";
 import { useBlackjackStore } from "../store/store";
+import { flowAddMoney } from "../utils/transactions2";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
     const [stakeAmount, setStakeAmount] = useState<number>(0);
     const [loading, setLoading] = useState(false);
     const [fullPageLoading, setFullPageLoading] = useState(false);
     const [chip, setChip] = useState(false)
+    const { primaryWallet } = useDynamicContext()
 
     const Chip = () => {
         useEffect(() => {
-          const audio = new Audio('/poker-chips.wav');
-        //   audio.loop = true;
-          audio.play();
-        //   setChip(false)
+            const audio = new Audio('/poker-chips.wav');
+            //   audio.loop = true;
+            audio.play();
+            //   setChip(false)
         }, []);
-      
-        return null;
-      };
+
+        return null;
+    };
 
     // Access store methods and state
     // @ts-ignore
@@ -46,6 +49,9 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
         try {
             // Update the store with the new stake amount
             setStake(stakeAmount);
+            const flowStake = await flowAddMoney(primaryWallet, stakeAmount)
+            console.log(flowStake)
+
 
             // Simulate an async operation (replace with your staking logic)
             await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
@@ -54,7 +60,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
             setFullPageLoading(true); // Show full-page loader
             setTimeout(() => {
                 setStep("3"); // Navigate to the next step
-            }, 4000); // Optional delay to show the full-page loader
+            }, 200); // Optional delay to show the full-page loader
         } catch (error: any) {
             console.error(error);
             alert("An error occurred: " + error.message); // Show error alert
@@ -103,7 +109,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                     variants={containerVariants}
                     className="w-[80%] flex flex-col items-center gap-6"
                 >
-                    {chip && <Chip/>}
+                    {chip && <Chip />}
                     <div className="w-full rounded-xl p-px bg-gradient-to-b from-[#F5D799] to-[#666666]">
                         <div className="backdrop-blur-2xl bg-opacity-1 bg-[#181A27] p-1 rounded-xl">
                             <div className="p-4">
@@ -121,7 +127,7 @@ const Stake = ({ setStep }: { setStep: Dispatch<SetStateAction<string>> }) => {
                                             className="size-16"
                                         />
                                         <p className="text-[#F8DDA4] text-[16px] font-bold raleway">
-                                             {stakeAmount} $CHIPS
+                                            {stakeAmount} $CHIPS
                                         </p>
                                     </div>
                                 </div>
