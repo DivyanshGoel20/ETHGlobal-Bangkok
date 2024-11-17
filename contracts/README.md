@@ -18,6 +18,6 @@ blackjack: 0x7326A5E482649E7D2a821fd143EB8A76c5BD4C6E
 
 # Scroll 
 
-blackjack: 0x601a251c428A0DD39CfF25cEBf7D9fED7Cd2e8A9
-chiptoken: 0x9B6c06c06fFbcE76183290eb2C679D9affae65Fb
-escrow: 0xF20DED5Cac2E1c0661E2F81D22F4059BB9761D40
+blackjack: [0xE2C984a4faD8E9232D1bb0c2b9978E854cafcf21](https://sepolia.scrollscan.com/address/0xe2c984a4fad8e9232d1bb0c2b9978e854cafcf21)
+chiptoken: [0xEd1190B1a6CE0CE6ea4C8EBD8c5B9C4a040daC76](https://sepolia.scrollscan.com/address/0xEd1190B1a6CE0CE6ea4C8EBD8c5B9C4a040daC76)
+escrow: [0xAAB916aE240FEDaa7c569D0FB8Fc435243Ac9757](https://sepolia.scrollscan.com/address/0xAAB916aE240FEDaa7c569D0FB8Fc435243Ac9757)

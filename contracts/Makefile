@@ -70,7 +70,7 @@ ifeq ($(findstring --network linea,$(ARGS)),--network linea)
 endif
 
 ifeq ($(findstring --network scrollSepolia,$(ARGS)),--network scrollSepolia)
-	NETWORK_ARGS := --rpc-url $(SCROLL_SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(SEPOLIA_SCAN_API_KEY)
+	NETWORK_ARGS := --rpc-url $(SCROLL_SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(SCROLL_SEPOLIA_SCAN_API_KEY)
 endif
 
 ifeq ($(findstring --network xdcTestnet,$(ARGS)),--network xdcTestnet)
