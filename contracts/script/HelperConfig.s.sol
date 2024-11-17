@@ -11,4 +11,9 @@ contract HelperConfig is Script {
     }
 
     function getKeyPair(string memory userId) public view {}
+
+    function getChipToken(uint256 _chainId) public view returns (address) {
+        address chipToken = DevOpsTools.get_most_recent_deployment("ChipToken", _chainId);
+        return chipToken;
+    }
 }
