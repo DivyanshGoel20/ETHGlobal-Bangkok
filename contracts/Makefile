@@ -102,3 +102,6 @@ deployChipToken:
 
 deployEscrow:
 	@forge script script/DeployEscrow.s.sol:DeployEscrow $(NETWORK_ARGS)
+
+sendFunds:
+	@forge script script/interactions/i_ChipToken.s.sol:SendFunds $(NETWORK_ARGS)
