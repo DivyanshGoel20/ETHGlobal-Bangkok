@@ -96,3 +96,12 @@ deployBlackJack:
 
 getRandomNumber: 
 	@forge script script/interactions/i_RandomNumber.s.sol:GetRandomNumber $(NETWORK_ARGS)
+
+deployChipToken:
+	@forge script script/DeployChipToken.s.sol:DeployChipToken $(NETWORK_ARGS)
+
+deployEscrow:
+	@forge script script/DeployEscrow.s.sol:DeployEscrow $(NETWORK_ARGS)
+
+sendFunds:
+	@forge script script/interactions/i_ChipToken.s.sol:SendFunds $(NETWORK_ARGS)
