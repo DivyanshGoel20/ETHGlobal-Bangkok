@@ -41,6 +41,10 @@ ifeq ($(findstring --network flow,$(ARGS)),--network flow)
 	NETWORK_ARGS := --rpc-url $(FLOW_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --legacy
 endif
 
+ifeq ($(findstring --network sapphire,$(ARGS)),--network sapphire)
+	NETWORK_ARGS := --rpc-url $(OASIS_SAPPHIRE_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --legacy --verify --verifier sourcify --verifier-url https://sourcify.dev/server
+endif
+
 ifeq ($(findstring --network morph,$(ARGS)),--network morph)
 	NETWORK_ARGS := --rpc-url $(MORPH_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --legacy
 endif
@@ -66,7 +70,7 @@ ifeq ($(findstring --network linea,$(ARGS)),--network linea)
 endif
 
 ifeq ($(findstring --network scrollSepolia,$(ARGS)),--network scrollSepolia)
-	NETWORK_ARGS := --rpc-url $(SCROLL_SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(SEPOLIA_SCAN_API_KEY)
+	NETWORK_ARGS := --rpc-url $(SCROLL_SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(SCROLL_SEPOLIA_SCAN_API_KEY)
 endif
 
 ifeq ($(findstring --network xdcTestnet,$(ARGS)),--network xdcTestnet)
@@ -85,13 +89,23 @@ ifeq ($(findstring --network gnosis,$(ARGS)),--network gnosis)
 	NETWORK_ARGS := --rpc-url $(GNOSIS_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(GONSIS_SCAN_API_KEY) 
 endif
 
+ifeq ($(findstring --network zircuit,$(ARGS)),--network zircuit)
+	NETWORK_ARGS := --rpc-url $(ZIRCUIT_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast 
+endif
+
 # Commands for Local
 
-deployDataValidatorHook: 
-	@forge script script/DeployDataValidatorHook.s.sol:DeployDataValidatorHook $(NETWORK_ARGS)
+deployBlackJack: 
+	@forge script script/DeployBlackJack.s.sol:DeployBlackJack $(NETWORK_ARGS)
 
-deployDataAttester: 
-	@forge script script/DeployDataAttester.s.sol:DeployDataAttester $(NETWORK_ARGS)
+getRandomNumber: 
+	@forge script script/interactions/i_RandomNumber.s.sol:GetRandomNumber $(NETWORK_ARGS)
 
-setSchemaId: 
-	@forge script script/interactions/i_DataAttester.s.sol:SetSchemaId $(NETWORK_ARGS)
+deployChipToken:
+	@forge script script/DeployChipToken.s.sol:DeployChipToken $(NETWORK_ARGS)
+
+deployEscrow:
+	@forge script script/DeployEscrow.s.sol:DeployEscrow $(NETWORK_ARGS)
+
+sendFunds:
+	@forge script script/interactions/i_ChipToken.s.sol:SendFunds $(NETWORK_ARGS)

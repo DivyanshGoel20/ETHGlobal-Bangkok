@@ -1,66 +1,23 @@
-## Foundry
+# Flow 
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+blackjack : 0xF3451c19a70852533C3416E76e229E15166d5F33
+chiptoken: 0x6C27b8604e7DAe0D7e319a9C45006BAd71EaB7a9
+escrow: 0x7d4a0E3c64d8740b01527218624393fB948195F2
 
-Foundry consists of:
+# Zircuit
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+chiptoken: 0xF3451c19a70852533C3416E76e229E15166d5F33
+escrow: 0x6C27b8604e7DAe0D7e319a9C45006BAd71EaB7a9
+blackjack: 0x92849e472D2c5204ef666e18a7a839e424a61977
 
-## Documentation
+# Base
 
-https://book.getfoundry.sh/
+chiptoken: 0x1df6c2952D00c2573a8209130CDefFedC994C3B9
+escrow: 0x94E2349aDC15dB527C4E50B45156B5fC3628F5C2
+blackjack: 0x7326A5E482649E7D2a821fd143EB8A76c5BD4C6E
 
-## Usage
+# Scroll 
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+blackjack: [0xE2C984a4faD8E9232D1bb0c2b9978E854cafcf21](https://sepolia.scrollscan.com/address/0xe2c984a4fad8e9232d1bb0c2b9978e854cafcf21)
+chiptoken: [0xEd1190B1a6CE0CE6ea4C8EBD8c5B9C4a040daC76](https://sepolia.scrollscan.com/address/0xEd1190B1a6CE0CE6ea4C8EBD8c5B9C4a040daC76)
+escrow: [0xAAB916aE240FEDaa7c569D0FB8Fc435243Ac9757](https://sepolia.scrollscan.com/address/0xAAB916aE240FEDaa7c569D0FB8Fc435243Ac9757)
